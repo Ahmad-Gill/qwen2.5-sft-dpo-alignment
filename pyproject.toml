@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "small-model-alignment-starter"
+version = "0.1.0"
+description = "Starter files for a small-model SFT and DPO alignment assignment."
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.setuptools]
+packages = []
