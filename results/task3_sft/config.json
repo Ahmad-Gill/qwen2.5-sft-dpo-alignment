@@ -1,0 +1,17 @@
+{
+  "data": "ultrachat_200k first turn, prompt<=256 tokens, seed 42",
+  "n_train": 64,
+  "n_val": 16,
+  "epochs": 1,
+  "max_len": 512,
+  "batch": 2,
+  "accum": 2,
+  "lr": 2e-05,
+  "weight_decay": 0.1,
+  "clip": 1.0,
+  "warmup": "3%",
+  "schedule": "cosine",
+  "precision": "fp32 weights + fp16 autocast + GradScaler",
+  "loss": "mean over response tokens",
+  "best_val_loss": 1.4930755496025085
+}
