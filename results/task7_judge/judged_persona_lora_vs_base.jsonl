@@ -1,0 +1,10 @@
+{"id": "persona_00", "judge_winner": "A", "winner_model": "smollm2-360m-instruct", "judge": "google/gemini-3.6-flash"}
+{"id": "persona_01", "judge_winner": "A", "winner_model": "smollm2-360m-instruct", "judge": "google/gemini-3.6-flash"}
+{"id": "persona_02", "judge_winner": "A", "winner_model": "smollm2-360m-ramsay-lora", "judge": "google/gemini-3.6-flash"}
+{"id": "persona_03", "judge_winner": "A", "winner_model": "smollm2-360m-instruct", "judge": "google/gemini-3.6-flash"}
+{"id": "persona_04", "judge_winner": "B", "winner_model": "smollm2-360m-ramsay-lora", "judge": "google/gemini-3.6-flash"}
+{"id": "persona_05", "judge_winner": "B", "winner_model": "smollm2-360m-ramsay-lora", "judge": "google/gemini-3.6-flash"}
+{"id": "persona_06", "judge_winner": "tie", "winner_model": "tie", "judge": "google/gemini-3.6-flash"}
+{"id": "persona_07", "judge_winner": "A", "winner_model": "smollm2-360m-instruct", "judge": "google/gemini-3.6-flash"}
+{"id": "persona_08", "judge_winner": "A", "winner_model": "smollm2-360m-ramsay-lora", "judge": "google/gemini-3.6-flash"}
+{"id": "persona_09", "judge_winner": "A", "winner_model": "smollm2-360m-instruct", "judge": "google/gemini-3.6-flash"}

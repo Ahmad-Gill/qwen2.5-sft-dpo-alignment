@@ -1,0 +1,10 @@
+{"id": "alpaca_eval_0", "judge_winner": "tie", "winner_model": "tie", "judge": "google/gemini-3.6-flash"}
+{"id": "alpaca_eval_2", "judge_winner": "tie", "winner_model": "tie", "judge": "google/gemini-3.6-flash"}
+{"id": "alpaca_eval_3", "judge_winner": "tie", "winner_model": "tie", "judge": "google/gemini-3.6-flash"}
+{"id": "alpaca_eval_6", "judge_winner": "A", "winner_model": "qwen2.5-0.5b-dpo_uf", "judge": "google/gemini-3.6-flash"}
+{"id": "alpaca_eval_7", "judge_winner": "tie", "winner_model": "tie", "judge": "google/gemini-3.6-flash"}
+{"id": "alpaca_eval_11", "judge_winner": "A", "winner_model": "qwen2.5-0.5b-sft", "judge": "google/gemini-3.6-flash"}
+{"id": "alpaca_eval_15", "judge_winner": "B", "winner_model": "qwen2.5-0.5b-dpo_uf", "judge": "google/gemini-3.6-flash"}
+{"id": "alpaca_eval_19", "judge_winner": "A", "winner_model": "qwen2.5-0.5b-dpo_uf", "judge": "google/gemini-3.6-flash"}
+{"id": "alpaca_eval_21", "judge_winner": "A", "winner_model": "qwen2.5-0.5b-dpo_uf", "judge": "google/gemini-3.6-flash"}
+{"id": "alpaca_eval_25", "judge_winner": "A", "winner_model": "qwen2.5-0.5b-dpo_uf", "judge": "google/gemini-3.6-flash"}

@@ -1,0 +1,39 @@
+{
+  "judge_model": "google/gemini-3.6-flash",
+  "batch_size": 5,
+  "sleep_seconds": 5,
+  "max_retries": 3,
+  "dpo_uf_vs_sft": {
+    "model_tested": "qwen2.5-0.5b-dpo_uf",
+    "total": 10,
+    "win": 5,
+    "loss": 1,
+    "tie": 4,
+    "unknown": 0,
+    "failure": 0,
+    "win_rate_without_ties": 0.833,
+    "win_rate_ties_as_half": 0.7
+  },
+  "dpo_hh_vs_sft": {
+    "model_tested": "qwen2.5-0.5b-dpo_hh",
+    "total": 10,
+    "win": 3,
+    "loss": 2,
+    "tie": 5,
+    "unknown": 0,
+    "failure": 0,
+    "win_rate_without_ties": 0.6,
+    "win_rate_ties_as_half": 0.55
+  },
+  "persona_lora_vs_base": {
+    "model_tested": "smollm2-360m-ramsay-lora",
+    "total": 10,
+    "win": 4,
+    "loss": 5,
+    "tie": 1,
+    "unknown": 0,
+    "failure": 0,
+    "win_rate_without_ties": 0.444,
+    "win_rate_ties_as_half": 0.45
+  }
+}
