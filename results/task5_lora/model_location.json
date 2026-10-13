@@ -1,0 +1,4 @@
+{
+  "hf_repo": "AhmaGill/smollm2-360m-ramsay-lora",
+  "base_model": "HuggingFaceTB/SmolLM2-360M-Instruct"
+}
