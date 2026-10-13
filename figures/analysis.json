@@ -1,0 +1,160 @@
+{
+  "generation_stats": {
+    "sft_alpaca": {
+      "mean_words": 120.3,
+      "median_words": 121.5,
+      "looping": 7,
+      "likely_cut_at_cap": 54,
+      "refusal_phrase": 7
+    },
+    "dpo_uf_alpaca": {
+      "mean_words": 156.1,
+      "median_words": 171.5,
+      "looping": 7,
+      "likely_cut_at_cap": 123,
+      "refusal_phrase": 4
+    },
+    "sft_hh": {
+      "mean_words": 126.9,
+      "median_words": 133.0,
+      "looping": 1,
+      "likely_cut_at_cap": 56,
+      "refusal_phrase": 13
+    },
+    "dpo_hh_hh": {
+      "mean_words": 115.6,
+      "median_words": 107.0,
+      "looping": 1,
+      "likely_cut_at_cap": 31,
+      "refusal_phrase": 31
+    },
+    "base_alpaca": {
+      "mean_words": 138.5,
+      "median_words": 153.5,
+      "looping": 2,
+      "likely_cut_at_cap": 105,
+      "refusal_phrase": 9
+    }
+  },
+  "judge": {
+    "dpo_uf_vs_sft": {
+      "win_rate_no_ties": 0.41,
+      "ci95": [
+        0.35,
+        0.473
+      ],
+      "sign_test_p": 0.0065
+    },
+    "dpo_hh_vs_sft": {
+      "win_rate_no_ties": 0.58,
+      "ci95": [
+        0.512,
+        0.646
+      ],
+      "sign_test_p": 0.0252
+    },
+    "persona_lora_vs_base": {
+      "win_rate_no_ties": 0.545,
+      "ci95": [
+        0.28,
+        0.787
+      ],
+      "sign_test_p": 1.0
+    }
+  },
+  "position_counts": {
+    "tie": 157,
+    "A": 274,
+    "B": 181
+  },
+  "position_A_share_of_decided": 0.602,
+  "hh_unique_prompts": 185,
+  "hh_by_category": {
+    "medical_safety": {
+      "win": 20,
+      "loss": 7,
+      "tie": 3
+    },
+    "self_harm_support": {
+      "win": 19,
+      "loss": 8,
+      "tie": 3
+    },
+    "benign_helpfulness": {
+      "tie": 5,
+      "win": 17,
+      "loss": 8
+    },
+    "calibration_and_uncertainty": {
+      "win": 11,
+      "loss": 7,
+      "tie": 12
+    },
+    "hate_or_harassment": {
+      "win": 12,
+      "loss": 8,
+      "tie": 10
+    },
+    "cyber_abuse": {
+      "loss": 6,
+      "tie": 16,
+      "win": 8
+    },
+    "legal_financial_safety": {
+      "tie": 7,
+      "win": 13,
+      "loss": 10
+    },
+    "harmful_instructions": {
+      "tie": 21,
+      "loss": 5,
+      "win": 4
+    },
+    "safe_transformation": {
+      "loss": 17,
+      "tie": 3,
+      "win": 10
+    },
+    "privacy_and_doxxing": {
+      "tie": 15,
+      "loss": 10,
+      "win": 5
+    }
+  },
+  "length_buckets": {
+    "dpo_uf_vs_sft": [
+      {
+        "loss": 8,
+        "tie": 5,
+        "win": 9
+      },
+      {
+        "loss": 38,
+        "win": 34,
+        "tie": 26
+      },
+      {
+        "tie": 30,
+        "win": 55,
+        "loss": 95
+      }
+    ],
+    "dpo_hh_vs_sft": [
+      {
+        "win": 56,
+        "tie": 25,
+        "loss": 21
+      },
+      {
+        "tie": 64,
+        "loss": 43,
+        "win": 50
+      },
+      {
+        "win": 13,
+        "loss": 22,
+        "tie": 6
+      }
+    ]
+  }
+}
