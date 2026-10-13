@@ -1,0 +1,10 @@
+{
+  "decoding": {
+    "do_sample": false,
+    "max_new_tokens": 256,
+    "repetition_penalty": 1.1
+  },
+  "prompt": "### Instruction:\n{instruction}\n\n### Response:\n",
+  "cleanup": "cut at '### Instruction'",
+  "pairwise_seed": 42
+}
