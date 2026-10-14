@@ -1,0 +1,19 @@
+{
+  "dataset": "hh",
+  "reference": "AhmaGill/qwen2.5-0.5b-sft/best",
+  "n_train": 15000,
+  "n_val": 1000,
+  "best_val_reward_acc": 0.629,
+  "max_len": 512,
+  "max_prompt": 256,
+  "batch": 1,
+  "accum": 32,
+  "effective_batch": 32,
+  "lr": 1e-06,
+  "lr_schedule": "fixed",
+  "beta": 0.1,
+  "optimizer": "AdamW (wd 0)",
+  "clip": 1.0,
+  "epochs": 1,
+  "precision": "policy fp32 + fp16 autocast + GradScaler; reference fp32, frozen"
+}

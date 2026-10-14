@@ -1,0 +1,10 @@
+{
+  "model": "Qwen/Qwen2.5-0.5B",
+  "prompt": "### Instruction:\n{}\n\n### Response:\n",
+  "seed": 42,
+  "n_questions": 300,
+  "do_sample": false,
+  "max_new_tokens": 256,
+  "repetition_penalty": 1.1,
+  "cleanup": "cut output at '### Instruction'"
+}

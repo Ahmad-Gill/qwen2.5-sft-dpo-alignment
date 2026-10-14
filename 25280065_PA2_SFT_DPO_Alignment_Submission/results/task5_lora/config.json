@@ -1,0 +1,75 @@
+{
+  "model": "HuggingFaceTB/SmolLM2-360M-Instruct",
+  "lora": {
+    "r": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "bias": "none",
+    "task_type": "CAUSAL_LM",
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ]
+  },
+  "train": {
+    "learning_rate": 5e-05,
+    "per_device_train_batch_size": 4,
+    "gradient_accumulation_steps": 2,
+    "num_train_epochs": 3,
+    "beta": 0.1,
+    "max_length": 512,
+    "max_prompt_length": 256,
+    "lr_scheduler_type": "cosine",
+    "warmup_ratio": 0.1,
+    "seed": 42
+  },
+  "effective_batch": 8,
+  "precision": "fp32 weights + fp16 AMP",
+  "n_train": 200,
+  "n_eval": 20,
+  "reference": "frozen base model (adapter disabled)",
+  "generation": {
+    "do_sample": false,
+    "max_new_tokens": 200,
+    "repetition_penalty": 1.1
+  },
+  "style_markers": [
+    "donkey",
+    "idiot",
+    "sandwich",
+    "bloody",
+    "disgrace",
+    "pathetic",
+    "raw",
+    "wake up",
+    "come on",
+    "for god's sake"
+  ],
+  "style_summary": {
+    "cooking": {
+      "base_style": 0.6666666666666666,
+      "lora_style": 3.3333333333333335
+    },
+    "coding": {
+      "base_style": 0.0,
+      "lora_style": 4.0
+    },
+    "general": {
+      "base_style": 0.3333333333333333,
+      "lora_style": 2.0
+    },
+    "safety": {
+      "base_style": 0.3333333333333333,
+      "lora_style": 3.0
+    }
+  },
+  "final_eval_reward_acc": 1.0,
+  "final_eval_reward_margin": 2.3060619831085205,
+  "trl": "0.25.1",
+  "peft": "0.17.1"
+}
