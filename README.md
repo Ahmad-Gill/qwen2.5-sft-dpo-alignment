@@ -102,6 +102,7 @@ Result: **7 passed**. The tests run on CPU in seconds, with no model download.
 
 | Notebook | Task | Main outputs |
 |---|---|---|
+| `notebooks/25280065-qwen2-5-sft-dpo-alignment-01-setup.ipynb` | Task 1: clone repo, install deps (no torch reinstall), confirm 2× T4 (`nvidia-smi`), print versions | `results/task1_setup/setup_info.json` |
 | `notebooks/25280065_02_baseline.ipynb` | Task 2: fixed AlpacaEval subset + base-model answers | `eval_sets/alpaca_eval_300_seed42.json`, `results/task2_baseline/` |
 | `notebooks/25280065_03_sft.ipynb` | Task 3: SFT (30k train / 1k val, 1 epoch) | `sft.py`, `results/task3_sft/` |
 | `notebooks/25280065_04_dpo.ipynb` | Task 4: HH-RLHF DPO and UltraFeedback DPO | `dpo.py`, `results/task4_dpo_hh/`, `results/task4_dpo_uf/` |
@@ -109,7 +110,7 @@ Result: **7 passed**. The tests run on CPU in seconds, with no model download.
 | `notebooks/25280065_06_generate.ipynb` | Task 6: SFT/DPO generations + blind pairwise files | `results/task6_generations/` |
 | `notebooks/25280065_07_judge.ipynb` | Task 7: LLM-as-judge evaluation | `results/task7_judge/` |
 
-Every notebook is restartable: it skips work whose outputs already exist (for example a pushed `model_location.json` or existing judgments).
+The DPO, generation and judge notebooks are restartable: they skip work whose outputs already exist (for example a pushed `model_location.json`, existing generation files, or existing judgments).
 
 Rebuild the report figures from the saved results (no GPU):
 

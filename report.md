@@ -6,7 +6,7 @@
 
 | Comparison (blind pairwise judge) | Eval set | n | Win / Loss / Tie | Win rate (no ties) | Verdict |
 |---|---|---|---|---|---|
-| UltraFeedback-DPO vs SFT | AlpacaEval, seed 42 | 300 | 98 / 141 / 61 | **0.410** (p = 0.007) | SFT better |
+| UltraFeedback-DPO vs SFT | AlpacaEval, seed 42 | 300 | 98 / 141 / 61 | **0.410** (p = 0.0065) | SFT better |
 | HH-RLHF-DPO vs SFT | Synthetic HH safety set | 300 | 119 / 86 / 95 | **0.580** (p = 0.025) | HH-DPO better |
 | LoRA-DPO vs base SmolLM2 | Persona style set | 12 | 6 / 5 / 1 | 0.545 (p = 1.0) | No detectable difference; style ↑ |
 
@@ -118,7 +118,7 @@ Every run used **a single configuration and a single seed**; no sweeps were run,
 
 *Figure 2. SFT on Qwen2.5-0.5B. Faint blue: training loss per response token, the mean of each 10 optimizer steps as logged. Solid blue: 50-step rolling mean of that series (the only extra smoothing). Orange: validation loss on 1,000 held-out examples every 100 steps. Dashed line: selected checkpoint.*
 
-**SFT.** Validation loss first **rises** from 1.3845 to 1.4082 at step 200 and then falls steadily to 1.3512. The rise coincides with warmup reaching the peak LR of 2e-5 at step 28 and staying near it, which briefly disturbs the pretrained distribution; cosine decay then lets the model settle. Train and validation loss both end near 1.35 (last logged train 1.346, validation 1.351), so there is **no overfitting** in one epoch. The lowest validation loss is at the last step, so `best` = `final` in practice (1.3512 at 937 vs 1.3513 at 900). The absolute drop is small (−2.4%) because the base model already predicts UltraChat-style text well. SFT's main effect is behavioural rather than visible in loss: on AlpacaEval, 105/300 base outputs run to the 256-token limit without finishing a sentence, against 54/300 for SFT (heuristic). Answer quality cannot be inferred from this loss curve alone.
+**SFT.** Validation loss first **rises** from 1.3845 to 1.4082 at step 200 and then falls steadily to 1.3512. The rise coincides with warmup reaching the peak LR of 2e-5 at step 28 and staying near it, which briefly disturbs the pretrained distribution; cosine decay then lets the model settle. Train and validation loss both end near 1.35 (last logged train 1.345, validation 1.351), so there is **no overfitting** in one epoch. The lowest validation loss is at the last step, so `best` = `final` in practice (1.3512 at 937 vs 1.3513 at 900). The absolute drop is small (−2.4%) because the base model already predicts UltraChat-style text well. SFT's main effect is behavioural rather than visible in loss: on AlpacaEval, 105/300 base outputs run to the 256-token limit without finishing a sentence, against 54/300 for SFT (heuristic). Answer quality cannot be inferred from this loss curve alone.
 
 ![DPO curves](figures/fig3_dpo.png)
 
@@ -126,7 +126,7 @@ Every run used **a single configuration and a single seed**; no sweeps were run,
 
 **DPO.** Both runs start exactly at loss ln 2 and accuracy 0 (all rewards tied at 0, per §10.5), which confirms that the policy and reference are identical at initialisation.
 
-- **HH** learns slowly. Accuracy reaches 0.57 by step 50, then plateaus at 0.62–0.63 from step 150 onwards. Validation loss ends at 0.628, still close to ln 2, so the preference signal in single-turn HH pairs is weak and noisy at this LR.
+- **HH** learns slowly. Accuracy reaches 0.565 by step 50, then plateaus at 0.62–0.63 from step 150 onwards. Validation loss ends at 0.628, still close to ln 2, so the preference signal in single-turn HH pairs is weak and noisy at this LR.
 - **UF** learns quickly. Accuracy is 0.69 by step 50 and 0.74 by the end, and loss falls to 0.522.
 - In both runs, **the margin keeps rising after accuracy has plateaued** (UF: 0.66 → 0.82 from step 200 to 468). The policy keeps widening the log-ratio gap on pairs it already ranks correctly instead of fixing new ones. This is the mechanism behind the length drift analysed in §14.6.2.
 - Train and validation accuracy agree in both runs (0.622 vs 0.620 for HH; 0.729 vs 0.736 for UF), so there is no overfitting. Neither run shows instability (no loss spikes or divergence).
@@ -151,7 +151,7 @@ Every run used **a single configuration and a single seed**; no sweeps were run,
 
 | Track | Eval set | n | Win | Loss | Tie | Unknown | Failure | Win rate (no ties) [95% CI] | Win rate (tie = ½) | Sign test p |
 |---|---|---|---|---|---|---|---|---|---|---|
-| UF-DPO vs SFT | AlpacaEval 300, seed 42 | 300 | 98 | 141 | 61 | 0 | 0 | **0.410** [0.350, 0.473] | 0.428 | 0.007 |
+| UF-DPO vs SFT | AlpacaEval 300, seed 42 | 300 | 98 | 141 | 61 | 0 | 0 | **0.410** [0.350, 0.473] | 0.428 | 0.0065 |
 | HH-DPO vs SFT | HH synthetic set | 300 | 119 | 86 | 95 | 0 | 0 | **0.580** [0.512, 0.646] | 0.555 | 0.025 |
 
 ![Judge summary](figures/fig5_judge_summary.png)
@@ -179,7 +179,7 @@ A marker-based style score was also computed (counts of persona words such as "d
 
 ### 14.6.1 Which model performed better, and by how much (measured)
 
-- **AlpacaEval: SFT beats UF-DPO.** DPO wins 41.0% of decided pairs, 9 points below parity; it loses 43 more prompts than it wins (p = 0.007).
+- **AlpacaEval: SFT beats UF-DPO.** DPO wins 41.0% of decided pairs, 9 points below parity; it loses 43 more prompts than it wins (p = 0.0065).
 - **HH safety set: HH-DPO beats SFT.** DPO wins 58.0% of decided pairs, 8 points above parity (p = 0.025). Ties are frequent (95/300) because the models often give near-identical answers.
 - **Persona: no measurable quality difference** (6–5–1), but the target style clearly increased.
 
@@ -275,7 +275,7 @@ The persona is closer to "excited cartoon" than Ramsay. Signature words such as 
 | Group | Files |
 |---|---|
 | Code | `sft.py` · `dpo.py` · `submission_adapter.py` · `tests/test_public_adapter_smoke.py` · `tests/toy_lm.py` · `requirements.txt` · `pyproject.toml` |
-| Notebooks (run in this order) | `notebooks/25280065_02_baseline.ipynb` → `notebooks/25280065_03_sft.ipynb` → `notebooks/25280065_04_dpo.ipynb` → `notebooks/25280065_05_lora.ipynb` → `notebooks/25280065_06_generate.ipynb` → `notebooks/25280065_07_judge.ipynb` |
+| Notebooks (run in this order) | `notebooks/25280065-qwen2-5-sft-dpo-alignment-01-setup.ipynb` → `notebooks/25280065_02_baseline.ipynb` → `notebooks/25280065_03_sft.ipynb` → `notebooks/25280065_04_dpo.ipynb` → `notebooks/25280065_05_lora.ipynb` → `notebooks/25280065_06_generate.ipynb` → `notebooks/25280065_07_judge.ipynb` |
 | Data and evaluation sets | `data/persona_lora/ramsay_style_preferences.json` · `eval_sets/alpaca_eval_300_seed42.json` · `eval_sets/hh_rlhf_eval_300_seed42.json` · `eval_sets/persona_style_eval.json` |
 | Task 1: setup | `results/task1_setup/setup_info.json` |
 | Task 2: baseline | `results/task2_baseline/base_generations.json` · `results/task2_baseline/generation_config.json` |
@@ -287,6 +287,6 @@ The persona is closer to "excited cartoon" than Ramsay. Signature words such as 
 | Task 7: judge | `results/task7_judge/judged_dpo_uf_vs_sft.jsonl` · `results/task7_judge/judged_dpo_hh_vs_sft.jsonl` · `results/task7_judge/judged_persona_lora_vs_base.jsonl` · `results/task7_judge/pairwise_persona_lora_vs_base.jsonl` · `results/task7_judge/summary.json` (there is no failure file, because there were 0 failures) |
 | Task 8: report | `report.md` · `scripts/make_report_figures.py` · `figures/analysis.json` · `figures/fig1_pipeline.png` · `figures/fig2_sft.png` · `figures/fig3_dpo.png` · `figures/fig4_lora.png` · `figures/fig5_judge_summary.png` · `figures/fig6_persona_style.png` · `figures/fig7_winrate_by_length.png` · `figures/fig8_hh_by_category.png` |
 
-To reproduce on Kaggle (GPU T4 × 2), add the secrets `GITHUB_TOKEN`, `GITHUB_REPO_URL` and `HF_TOKEN` and run the notebooks in order; each skips work whose outputs already exist.
+To reproduce on Kaggle (GPU T4 × 2), add the secrets `GITHUB_TOKEN`, `GITHUB_REPO_URL` and `HF_TOKEN` and run the notebooks in order; the DPO, generation and judge notebooks skip work whose outputs already exist.
 
 **References.** [1] Rafailov et al., *Direct Preference Optimization*, NeurIPS 2023. [2] Bai et al., *HH-RLHF*, 2022. [3] Cui et al., *UltraFeedback*, 2023. [4] Ding et al., *UltraChat*, 2023. [5] Hu et al., *LoRA*, ICLR 2022. [6] Qwen Team, *Qwen2.5*, 2024. [7] Hugging Face TRL `DPOTrainer` and PEFT docs. [8] Li et al., *AlpacaEval*, 2023.
